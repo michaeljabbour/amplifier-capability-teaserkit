@@ -1,7 +1,7 @@
 ---
 smart_tool_format: 1
 name: teaserkit
-version: 0.1.0
+version: 0.1.1
 description: >
   Makes short product teaser videos from a live web app: it films scripted clicks and typing in
   headless Chromium, adds slow eased camera moves, captions, title and end cards, and an

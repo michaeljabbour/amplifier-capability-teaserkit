@@ -111,3 +111,17 @@ def test_takes_group_beats_in_order():
     sb = load(DEMO)
     assert list(sb.takes()) == ["tour"]
     assert [b.id for b in sb.takes()["tour"]][:2] == ["today", "add-task"]
+
+
+def test_deny_list_entries_resolve_env(monkeypatch):
+    from teaserkit.errors import RecordingError
+    from teaserkit.recorder import live_deny_pattern
+
+    data = minimal()
+    data["project"]["deny_list"] = ["${env:TK_TEST_DENY}"]
+    sb = parse(data)
+    monkeypatch.setenv("TK_TEST_DENY", "zorblat")
+    assert live_deny_pattern(sb).search("hello Zorblat")
+    monkeypatch.delenv("TK_TEST_DENY")
+    with pytest.raises(RecordingError):
+        live_deny_pattern(sb)

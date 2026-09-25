@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "teaserkit"
-version = "0.1.0"
+version = "0.1.1"
 description = "Turn a live web app into short product teaser videos: scripted headless-Chromium takes, eased camera moves, captions, original synthesized music, and 16:9 / 9:16 / 1:1 exports."
 readme = "README.md"
 license = "MIT"

@@ -1,0 +1,9 @@
+# Brand for the teaserkit teaser. Fonts stay on the system UI stack.
+wordmark: teaserkit
+colors:
+  ink: "#0E1116"
+  paper: "#FFFFFF"
+  accent: "#3B82F6"
+  highlight: "#F59E0B"
+  muted: "#6B7280"
+  stripe: ["#3B82F6", "#F59E0B", "#10B981", "#EF4444"]

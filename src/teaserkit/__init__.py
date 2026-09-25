@@ -14,7 +14,7 @@ Heavy modules (OpenCV, Playwright) load on first use, so `import teaserkit` is c
 
 from __future__ import annotations
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 from ._manifest import capabilities, capability_skill, manifest, skill  # noqa: E402
 from .errors import (  # noqa: E402

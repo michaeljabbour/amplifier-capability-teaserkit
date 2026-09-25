@@ -125,6 +125,15 @@ The AI capabilities use Anthropic's API through the `ai` extra (`ANTHROPIC_API_K
 [docs/configuring-ai.md](docs/configuring-ai.md)). Without a provider they exit with code 3
 and a message naming the fix. They never fall back to guessing.
 
+## Watch it build its own teaser
+
+![An Amplifier agent asked to make a teaser of this app with teaserkit](docs/images/teaser.gif)
+
+Asked for nothing but "make a teaser of this app with teaserkit," an [Amplifier](https://github.com/microsoft/amplifier)
+agent finds the CLI through its own `--help`, builds the video, and gets a working result.
+[Watch the full clip](https://github.com/michaeljabbour/teaserkit/releases/tag/v0.1.1) (28s,
+with sound), or reproduce it yourself: [`examples/self-teaser`](examples/self-teaser).
+
 ## Use it from an agent
 
 teaserkit is an [Amplifier Smart Tool](https://github.com/microsoft/amplifier-smart-tools): a

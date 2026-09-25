@@ -8,11 +8,12 @@ page. Beats run in order; the recorder marks each beat's start, the start of its
 and its end, and records the on-screen box of every ROI selector. After every step the visible
 text (plus input values and the page title) is scanned for deny-listed strings.
 
-Steps: `goto` (path or URL), `click` / `hover` / `wait_for` (locator), `type` (`text`, `delay`,
-optional `into` locator), `press` (key), `scroll` (`dy`, `ms`), `hold` (seconds), `move` (`x`,
-`y`, `ms`). Locators: a string (visible text), or one of `{text}`, `{role, name}`, `{label}`,
-`{placeholder}`, `{selector}`, each with optional `exact` and `nth`. `${env:NAME}` in any
-string is read from the environment at run time.
+Steps: `goto` (path or URL), `click` / `hover` / `wait_for` (locator; `wait_for` also takes
+`timeout`, seconds, default 20), `type` (`text`, `delay`, optional `into` locator), `press`
+(key), `scroll` (`dy`, `ms`), `hold` (seconds), `move` (`x`, `y`, `ms`). Locators: a string
+(visible text), or one of `{text}`, `{role, name}`, `{label}`, `{placeholder}`, `{selector}`,
+each with optional `exact` and `nth`. `${env:NAME}` in any string, including `deny_list`
+entries, is read from the environment at run time.
 
 Auth: `none`; `storage_state` (`path` to a saved session JSON); `script` (`steps` run in the
 same context before filming, never recorded). `project.serve` serves a static directory on a

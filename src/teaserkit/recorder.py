@@ -84,6 +84,11 @@ def resolve_env(s: str) -> str:
     return ENV_REF.sub(sub, s)
 
 
+def live_deny_pattern(sb: Storyboard) -> re.Pattern | None:
+    """The deny list with `${env:NAME}` resolved, so a shared storyboard can deny local names it never spells out."""
+    return deny_pattern([resolve_env(t) for t in deny_terms(sb)])
+
+
 @dataclass
 class TakeResult:
     take: str
@@ -283,7 +288,7 @@ def _encode(frames: list[tuple[Path, float]], end_wall: float, out: Path, size: 
 async def _record_take(ctx, sb: Storyboard, base_url: str, take: str, beats: list[Beat], raw_dir: Path, log: Log) -> TakeResult:
     proj = sb.project
     page = await ctx.new_page()
-    actor = _Actor(page, base_url, proj.viewport, deny_pattern(deny_terms(sb)), log)
+    actor = _Actor(page, base_url, proj.viewport, live_deny_pattern(sb), log)
     steps0 = list(beats[0].steps)
     pre = []
     while steps0 and "goto" in steps0[0]:

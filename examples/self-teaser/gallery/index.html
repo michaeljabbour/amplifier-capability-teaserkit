@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Output</title>
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin: 0; height: 100%; background: #0E1116; font: 15px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; color: #9AA4B2; }
+  main { height: 100%; display: flex; align-items: center; justify-content: center; gap: 36px; }
+  figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  video { display: block; border-radius: 10px; background: #000; box-shadow: 0 12px 40px rgba(0,0,0,.45); }
+  #wide video { width: 720px; }
+  #tall video { height: 600px; }
+  #square video { width: 400px; }
+  figcaption { letter-spacing: .04em; }
+</style>
+</head>
+<body>
+<main>
+  <figure id="wide"><video src="../acme/out/acme-teaser-16x9-no-audio.mp4" autoplay muted loop playsinline></video><figcaption>16:9</figcaption></figure>
+  <figure id="tall"><video src="../acme/out/acme-teaser-9x16-no-audio.mp4" autoplay muted loop playsinline></video><figcaption>9:16</figcaption></figure>
+  <figure id="square"><video src="../acme/out/acme-teaser-1x1-no-audio.mp4" autoplay muted loop playsinline></video><figcaption>1:1</figcaption></figure>
+</main>
+</body>
+</html>

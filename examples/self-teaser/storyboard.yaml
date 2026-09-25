@@ -1,0 +1,84 @@
+# teaserkit's own teaser: an Amplifier agent drives teaserkit in a Forge terminal, then the result.
+# Filmed with teaserkit itself. `setup.sh` prepares the shoot first: a private Forge daemon on
+# :3199 with one Amplifier session in ./acme, serving this directory (so gallery/ can reach
+# acme/out/ once that session has built its own teaser).
+project:
+  name: teaserkit teaser
+  serve: {dir: ., port: 0}
+  brand: brand.yaml
+  deny_list: ["/Users/", "/home/", "keys.env"]  # a home path or a leaked secrets file # check-generic:allow
+  viewport: [1440, 810]
+  dpr: 2
+
+style:
+  lengths: {clip: [20, 40]}
+  max_speedup: 4.0
+
+outputs:
+  aspects: [16x9]
+  no_audio: all
+  posters: true
+  sheets: true
+
+beats:
+  - id: ask
+    take: agent
+    steps:
+      - goto: "http://127.0.0.1:3199/"
+      - click: {selector: ".xterm"}
+      - type: {text: "Make a 30-second teaser of this app with teaserkit. Use its own --help, don't guess. Output to ./out.", delay: 32}
+      - press: Enter
+    hold: 1.0
+    duration: 5
+    caption: Ask your agent for a teaser
+    roi: [200, 78, 1100, 584]
+
+  - id: boot        # model start-up before the first visible output; left out of the video
+    take: agent
+    steps:
+      - wait_for: {text: "Using tool"}
+        timeout: 240
+    hold: 0.2
+    duration: 3
+
+  - id: think
+    take: agent
+    steps:
+      - hold: 21
+    hold: 1.0
+    duration: 8
+    caption: It learns the tool from --help
+    sub: Shown at 3x speed.
+    roi: [200, 113, 1440, 810]
+
+  - id: wait        # the build itself; recorded, but left out of the video
+    take: agent
+    steps:
+      - wait_for: {text: "Turn: $"}
+        timeout: 900
+    hold: 0.5
+    duration: 3
+
+  - id: done
+    take: agent
+    steps:
+      - hold: 1.0
+    hold: 3.5
+    duration: 5
+    roi: [210, 0, 1430, 686]     # no caption: the agent's summary says it; stops above a provider notice
+
+  - id: shapes
+    take: gallery
+    steps:
+      - goto: /gallery/index.html
+    hold: 5
+    duration: 6
+    caption: One storyboard, every shape
+    roi: [0, 0, 1440, 810]
+
+videos:
+  - id: teaserkit-teaser
+    kind: clip
+    title: {title: teaserkit, sub: Product teasers from a live web app.}
+    end: {tagline: Re-shoot it in one command., sub: An Amplifier Smart Tool, url: github.com/michaeljabbour/teaserkit}
+    beats: [ask, think, done, shapes]
