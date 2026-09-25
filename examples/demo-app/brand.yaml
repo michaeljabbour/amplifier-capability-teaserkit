@@ -1,0 +1,10 @@
+# Brand for the fictional Acme Planner demo. Fonts stay on the system UI stack.
+wordmark: Acme Planner
+logo: logo.svg
+colors:
+  ink: "#16324F"
+  paper: "#FFFFFF"
+  accent: "#1F7A8C"
+  highlight: "#F4B942"
+  muted: "#5A6B7B"
+  stripe: ["#1F7A8C", "#F4B942", "#E07A5F", "#81B29A"]

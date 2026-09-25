@@ -1,0 +1,14 @@
+# Brand for captions and cards. Everything is optional.
+wordmark: __NAME__          # shown where a logo would go
+# logo: logo.svg            # SVG or PNG for light backgrounds (end card; title card with `logo: true`)
+# logo_on_dark: logo-white.svg  # for the dark brand band in 9:16; otherwise the wordmark is set as text
+fonts:
+  heading: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+  body: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+  # files: [{family: MyFont, path: fonts/MyFont.woff2, weight: "100 900"}]  # only fonts you may redistribute
+colors:
+  ink: "#1E2230"
+  paper: "#FFFFFF"
+  accent: "#3B5BDB"
+  highlight: "#F2B84B"
+  muted: "#5B6272"

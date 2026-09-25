@@ -1,0 +1,5 @@
+{
+  "manifest": "src/teaserkit/SMART_TOOL.md",
+  "cli_argv": ["teaserkit"],
+  "deterministic_smoke": ["manifest"]
+}

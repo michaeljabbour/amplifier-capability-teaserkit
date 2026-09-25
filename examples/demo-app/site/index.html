@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Today · Acme Planner</title><link rel="stylesheet" href="style.css"></head>
+<body><nav><div class="brand"><i></i>Acme Planner</div><a href="index.html">Today</a><a href="board.html">Board</a><a href="insights.html">Insights</a><div class="foot">Spring launch workspace</div></nav>
+<main>
+<header><div><h1>Today</h1><div class="sub">Thursday · Spring launch</div></div><div class="people"><span style="background:#1F7A8C">AD</span><span style="background:#E07A5F">KA</span><span style="background:#3D5A80">NO</span><span style="background:#81B29A">TH</span></div></header>
+<div class="grid">
+<section class="card" id="today-card">
+<form class="add" id="add"><input placeholder="Add a task" aria-label="Add a task"><button type="submit">Add</button></form>
+<ul class="tasks" id="tasks-list">
+<li><input type="checkbox" id="t1"><label for="t1">Draft the welcome email</label><span class="tag">Launch</span></li>
+<li><input type="checkbox" id="t2"><label for="t2">Confirm the photographer</label><span class="tag">Event</span></li>
+<li><input type="checkbox" id="t3"><label for="t3">Review the floor plan with Kai</label><span class="tag">Event</span></li>
+<li class="done"><input type="checkbox" id="t4" checked><label for="t4">Share the press kit</label><span class="tag">Launch</span></li>
+<li><input type="checkbox" id="t5"><label for="t5">Pick three snack options</label><span class="tag">Event</span></li>
+</ul>
+</section>
+<aside class="card side" id="progress">
+<h3>This week</h3><div id="count"></div><div class="meter"><b id="meter"></b></div>
+<div class="row"><span>Launch day</span><b>12 May</b></div>
+<div class="row"><span>Open tasks</span><b>14</b></div>
+<div class="row"><span>Team</span><b>Ada, Kai, Noor, Theo</b></div>
+</aside>
+</div>
+</main>
+<script src="app.js"></script></body></html>

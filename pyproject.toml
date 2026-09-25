@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "teaserkit"
+version = "0.1.0"
+description = "Turn a live web app into short product teaser videos: scripted headless-Chromium takes, eased camera moves, captions, original synthesized music, and 16:9 / 9:16 / 1:1 exports."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "teaserkit contributors" }]
+keywords = ["video", "teaser", "screen-recording", "playwright", "ffmpeg", "product-demo"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: MacOS",
+  "Operating System :: POSIX :: Linux",
+  "Topic :: Multimedia :: Video",
+]
+dependencies = [
+  "numpy>=1.26",
+  "opencv-python-headless>=4.9",
+  "pyyaml>=6.0",
+  "platformdirs>=4.0",
+  "playwright>=1.45",
+]
+
+[project.urls]
+Homepage = "https://github.com/michaeljabbour/teaserkit"
+Issues = "https://github.com/michaeljabbour/teaserkit/issues"
+
+[project.optional-dependencies]
+ai = ["anthropic>=0.60"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+teaserkit = "teaserkit.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/teaserkit"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["e2e: drives real Chromium and ffmpeg end to end (set TEASERKIT_E2E=1)"]

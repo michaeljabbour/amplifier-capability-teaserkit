@@ -1,0 +1,44 @@
+# A teaser storyboard. Edit the project, then the beats, then run:
+#   teaserkit validate storyboard.yaml
+#   teaserkit build storyboard.yaml --out out
+# Use fictional demo data only: a demo workspace with made-up people and projects.
+project:
+  name: __NAME__
+  base_url: https://app.example.com        # the running app to film
+  auth: {kind: none}                       # none | storage_state {path} | script {steps}
+  brand: brand.yaml
+  deny_list: []                            # real names, internal codenames, customer names...
+  viewport: [1440, 810]
+  dpr: 2
+
+outputs:
+  aspects: [16x9, 9x16, 1x1]
+  no_audio: main
+  posters: true
+  sheets: true
+
+beats:
+  - id: home
+    take: main
+    steps:
+      - goto: /
+    hold: 2.5
+    duration: 5
+    caption: Everything in one place
+  - id: first-feature
+    take: main
+    steps:
+      - click: {role: button, name: "New"}
+      - type: {text: "A friendly example", delay: 50}
+      - press: Enter
+    hold: 2.0
+    duration: 5.5
+    caption: Start something in seconds
+    roi: [200, 0, 1440, 810]
+
+videos:
+  - id: teaser
+    kind: main
+    title: {title: __NAME__, sub: One line about what it does.}
+    end: {tagline: A short closing line., url: example.com}
+    beats: [home, first-feature]

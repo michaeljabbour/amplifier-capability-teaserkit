@@ -1,0 +1,27 @@
+// Regenerate: dot -Tsvg docs/images/pipeline.dot -o docs/images/pipeline.svg
+digraph teaserkit {
+  graph [rankdir=LR, bgcolor="transparent", pad="0.3", nodesep="0.35", ranksep="0.45", fontname="Helvetica"];
+  node  [shape=box, style="rounded,filled", fillcolor="#FFFFFF", color="#C9CED6", fontname="Helvetica", fontsize=12, fontcolor="#1F2328", margin="0.18,0.10"];
+  edge  [color="#8C959F", arrowsize=0.7, fontname="Helvetica", fontsize=10, fontcolor="#57606A"];
+
+  sb      [label="storyboard.yaml", shape=note, fillcolor="#F6F8FA"];
+  validate[label="validate"];
+  record  [label="record\nheadless Chromium"];
+  captions[label="captions\nHTML → PNG"];
+  compose [label="compose\nper aspect"];
+  music   [label="music\nsynthesized"];
+  finalize[label="finalize\nmux · loudness · posters"];
+  out     [label="16:9 · 9:16 · 1:1\nMP4 + posters + sheets", shape=folder, fillcolor="#F6F8FA"];
+
+  node [fillcolor="#EEF4FF", color="#8FB0E8", fontcolor="#1B3A6B"];
+  plan    [label="plan (AI)"];
+  explore [label="explore (AI)"];
+  review  [label="review (AI)"];
+
+  sb -> validate -> record -> captions -> compose -> finalize -> out;
+  music -> finalize;
+  plan -> sb      [style=dashed, label="drafts"];
+  explore -> record [style=dashed, label="finds steps"];
+  out -> review   [style=dashed, label="checks frames"];
+  {rank=same; compose; music}
+}

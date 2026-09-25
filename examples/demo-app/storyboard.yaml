@@ -1,0 +1,146 @@
+# Demo storyboard: a ~35 s clip of the fictional "Acme Planner" app in site/.
+#   teaserkit build examples/demo-app/storyboard.yaml --out /tmp/teaserkit-demo
+# teaserkit serves site/ on a random local port while recording (project.serve).
+project:
+  name: Acme Planner
+  serve: {dir: site, port: 0}
+  auth: {kind: none}
+  brand: brand.yaml
+  deny_list: ["Internal only", "staging", "@acme-corp"]
+  viewport: [1440, 810]
+  dpr: 2
+
+outputs:
+  aspects: [16x9, 9x16, 1x1]
+  no_audio: all
+  posters: true
+  sheets: true
+
+beats:
+  - id: today
+    take: tour
+    steps:
+      - goto: /index.html
+      - hover: {text: "Confirm the photographer"}
+    hold: 2.5
+    duration: 5
+    caption: Your whole day on one page
+    # Full content area for 16:9 (unchanged). For 9:16/1:1 a plain selector+pad
+    # crop misses the page's own "Today / Thursday..." heading, which sits
+    # above #today-card -- use an explicit box that starts above the card and
+    # stops short of #progress (x1030) so it doesn't bleed into "This week".
+    roi: [232, 0, 1440, 810]
+    roi_per_aspect:
+      9x16: [244, 20, 1024, 545]
+      1x1: [244, 20, 1024, 545]
+
+  - id: add-task
+    take: tour
+    steps:
+      - click: {placeholder: "Add a task"}
+      - type: {text: "Book the venue walkthrough", delay: 45}
+      - press: Enter
+    hold: 1.8
+    duration: 6
+    caption: Add a task in seconds
+    # A selector+pad box here is tall enough that 16:9's aspect math (height *
+    # aspect ratio) forces the crop wider than the card itself, and since the
+    # crop is centered on the card the extra width bleeds symmetrically into
+    # the neighboring #progress panel -- visible as a sliver of "This week"
+    # ("T"). This explicit box already accounts for that expansion and keeps
+    # the right edge clear of #progress (x1030) across all three aspects.
+    roi: [245, 20, 1000, 410]
+
+  - id: complete
+    take: tour
+    steps:
+      - click: {selector: "#t1"}
+    hold: 1.6
+    duration: 5
+    caption: Tick things off as you go
+    sub: Progress updates by itself.
+    # Same today-card framing as add-task (keeps the page heading in frame,
+    # no bleed into #progress). The #progress zoom starts clear of the page
+    # heading's right edge (x960 > heading's x466) so the "Today / Thursday..."
+    # heading is fully out of frame rather than sliced -- a pad-based box here
+    # was wide enough to reach 55%-of-screen-width (16:9's min_crop) and got
+    # re-centered by the fitter, dragging its left edge back across the tail
+    # of the heading text (a partial clip, worse than a clean exclude).
+    roi:
+      - {at: 0, roi: [245, 20, 1000, 410]}
+      - {at: 2.2, roi: [960, 60, 1400, 540], move: 1.4}
+
+  - id: board
+    take: tour
+    steps:
+      - click: {role: link, name: Board}
+    hold: 2.2
+    duration: 5
+    caption: Every project at a glance
+    # #col-doing pad 40 is tall+narrow enough that 16:9's aspect math bleeds
+    # the crop into both neighbors at once: the "NEXT" column heading on the
+    # left and the avatar row top-right. This explicit box fully includes
+    # #col-next (so its heading isn't sliced) and stops before the avatars
+    # (x1284) and before #col-done's heading (~x1058).
+    roi:
+      - {at: 0, roi: [232, 0, 1440, 810]}
+      - {at: 1.8, roi: [240, 130, 1000, 520], move: 1.6}
+    roi_per_aspect:
+      9x16:
+        - {at: 0, selector: "#col-next", pad: 20}
+        - {at: 1.8, selector: "#col-doing", pad: 20, move: 1.6}
+
+  - id: card
+    take: tour
+    steps:
+      - click: {text: "Order name badges"}
+      - wait_for: {selector: "#detail.open"}
+    hold: 2.2
+    duration: 5.5
+    caption: Open any card for details
+    roi: [700, 0, 1440, 810]
+    roi_per_aspect:
+      9x16: {selector: "#detail", pad: 0}
+
+  - id: insights
+    take: tour
+    steps:
+      - click: {role: link, name: Insights}
+    hold: 2.8
+    duration: 6
+    caption: Progress that explains itself
+    sub: Every chart has a plain summary.
+    roi:
+      - {at: 0, roi: [232, 0, 1440, 810]}
+      - {at: 2.0, selector: "#chart", pad: 24, move: 1.6}
+    # #chart (1120 CSS wide) is wider than any 9:16/1:1 crop this 1440x810
+    # recording can produce (max ~583 CSS for 9:16, ~972 for 1:1), so a
+    # selector zoom on the whole chart always slices into the ".summary"
+    # caption on both edges. Zoom to the chart heading + bars instead, and
+    # size it short enough (y ends at 390) that 1:1's forced-full-height crop
+    # doesn't reach back down to the caption at all -- better to omit it
+    # cleanly than clip it.
+    roi_per_aspect:
+      9x16:
+        - {at: 0, roi: [232, 0, 1440, 810]}
+        - {at: 2.0, roi: [270, 210, 970, 390], move: 1.6}
+      1x1:
+        - {at: 0, roi: [232, 0, 1440, 810]}
+        - {at: 2.0, roi: [270, 210, 970, 390], move: 1.6}
+
+videos:
+  - id: acme-teaser
+    kind: clip
+    title: {title: Acme Planner, sub: Plan the week without the busywork.}
+    end: {tagline: Plan less. Do more., sub: A fictional app made for this demo., url: acme-planner.example}
+    beats: [today, add-task, complete, board, card, insights]
+    # Default poster_at (40% into the video) lands mid-"complete" beat, inside
+    # the tight #progress zoom -- a crop under 540 CSS px wide there is
+    # upscaled to the 1080px-wide 9:16 poster, producing the blurry/pixelated
+    # poster. Pin it to the "board" beat's full-page overview instead, where
+    # every aspect's crop sits at its house-style width cap (9:16 583 CSS,
+    # 1:1 972 CSS), well above the 540 CSS floor -- and it's a more
+    # representative hero frame besides. 16.8 is board's nominal start but
+    # still crossfading in from "complete"; 18.3 is settled (before the 1.8s
+    # local pan to #col-doing starts at 18.6).
+    poster_at: 18.3
