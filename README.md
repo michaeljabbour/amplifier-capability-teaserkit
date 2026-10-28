@@ -1,8 +1,43 @@
 # TeaserKit
 
-Re-shoot a product video from one storyboard in landscape, vertical and square formats.
+Change the interface. Re-shoot the same story.
 
-Native identity stays `teaserkit`; its manifest and --help remain the executable Smart Tool guide. Install locally with `python3 -m pip install .`. See [consolidation boundaries](docs/CONSOLIDATION.md).
+For people producing repeatable product videos of web apps. TeaserKit writes the clicks, framing, captions and timing into a storyboard, then builds landscape, vertical and square outputs from that shared source.
+
+[Explore the site](https://michaeljabbour.github.io/amplifier-smart-tool-teaserkit/)
+
+## What you get
+
+- **Keep the edit repeatable.** Update a beat after the UI changes instead of reconstructing the entire capture by hand.
+- **Frame each shape deliberately.** Give vertical and square their own regions of interest rather than relying on a crop of the landscape edit.
+- **Review the whole output.** Use validation, contact sheets, posters and build records to inspect timing, framing and accidental leaks.
+
+## Start here
+
+```sh
+git clone https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit.git
+cd amplifier-smart-tool-teaserkit
+python3 -m venv .venv
+.venv/bin/python -m pip install .
+.venv/bin/teaserkit --help
+```
+
+The package is installed into the project virtual environment. The native guide below explains configuration and actual operations. Start by inspecting help; no provider or GitHub operation is needed to do that.
+
+## What you need
+
+- The quickstart uses macOS/Linux virtual-environment paths. On Windows, use the corresponding `.venv\Scripts` executables.
+- Python 3.11+, ffmpeg and Playwright Chromium are required for a full build.
+- The deterministic library/CLI works without an AI provider. Optional plan, explore and review use the separately configured ai extra.
+- Install the package first, inspect teaserkit doctor, then install any missing browser or renderer prerequisites deliberately.
+
+## Evidence and limits
+
+Deterministic and mocked checks plus installed storyboard validation passed. The full capture/render end-to-end check is separate; this update generated no new video.
+
+The worked examples on the site are fictional. They illustrate the output and decisions; they are not user results or measured benefit. See [consolidation and runtime boundaries](docs/CONSOLIDATION.md) for retained interfaces and acceptance scope.
+
+---
 
 ## Retained native guide
 
@@ -40,7 +75,7 @@ teaserkit needs Python 3.11+, [ffmpeg](docs/installing-ffmpeg.md) and Playwright
 [Chromium](docs/installing-playwright.md).
 
 ```bash
-uv tool install "teaserkit[ai] @ git+https://github.com/michaeljabbour/teaserkit"
+uv tool install "teaserkit[ai] @ git+https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit"
 uv tool run --from teaserkit playwright install chromium
 brew install ffmpeg            # or: sudo apt install ffmpeg
 teaserkit doctor
@@ -54,7 +89,7 @@ network access beyond the app being filmed.
 Build the included demo:
 
 ```bash
-git clone https://github.com/michaeljabbour/teaserkit && cd teaserkit
+git clone https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit && cd teaserkit
 teaserkit validate examples/demo-app/storyboard.yaml
 teaserkit build examples/demo-app/storyboard.yaml --out /tmp/teaserkit-demo
 ```
@@ -139,7 +174,7 @@ and a message naming the fix. They never fall back to guessing.
 
 Asked for nothing but "make a teaser of this app with teaserkit," an [Amplifier](https://github.com/microsoft/amplifier)
 agent finds the CLI through its own `--help`, builds the video, and gets a working result.
-[Watch the full clip](https://github.com/michaeljabbour/teaserkit/releases/tag/v0.1.1) (28s,
+[Watch the full clip](https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit/releases/tag/v0.1.1) (28s,
 with sound), or reproduce it yourself: [`examples/self-teaser`](examples/self-teaser).
 
 ## Use it from an agent
