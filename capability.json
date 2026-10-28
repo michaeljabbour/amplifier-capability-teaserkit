@@ -1,0 +1,102 @@
+{
+  "id": "teaserkit",
+  "display_name": "TeaserKit",
+  "kind": "smart-tool",
+  "promise": "Re-shoot a product video from one storyboard in landscape, vertical and square formats.",
+  "audience": "People and agents producing repeatable videos of real web interfaces.",
+  "trigger": "Validate, record, compose or re-shoot a storyboard-driven app teaser.",
+  "skill_path": null,
+  "modes": [
+    {
+      "name": "Prepare",
+      "when": "A filmed app needs a repeatable edit.",
+      "output": "A storyboard with validated beats, steps and aspect-specific framing."
+    },
+    {
+      "name": "Build",
+      "when": "A storyboard and capture environment are ready.",
+      "output": "Captured takes, videos, posters and contact sheets."
+    },
+    {
+      "name": "Review",
+      "when": "The footage needs quality or privacy inspection.",
+      "output": "Contact-sheet findings; optional model review is advisory."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Fictional app re-shoot",
+      "brief": "A fictional demo app changes one button and one shot must be recorded again.",
+      "before": "A manually recorded film requires a complete re-edit.",
+      "after": "The storyboard changes the one beat and preserves the edit in three shapes.",
+      "why": "The retained native capture/composition pipeline is independently useful to callers without Sizzle.",
+      "fictional": true
+    }
+  ],
+  "boundaries": [
+    "Deterministic validation and rendering do not require a model key; optional plan/explore/review capabilities can incur provider cost.",
+    "Browser/ffmpeg prerequisites are explicit and are not installed as an unrequested side effect.",
+    "No new film, live browser recording or paid provider call was performed in this local packaging baseline."
+  ],
+  "install_commands": [
+    "python3 -m pip install .",
+    "teaserkit doctor"
+  ],
+  "runtime_install_commands": [
+    "python3 -m pip install .",
+    "teaserkit doctor"
+  ],
+  "verification": [
+    {
+      "name": "Native functional baseline",
+      "command": "python3 -m pytest -q",
+      "expected": "Original deterministic/mocked native checks pass.",
+      "status": "passed",
+      "evidence": "45 deterministic/mocked tests (1 e2e skipped) and 2 fictional storyboard validation checks passed; no film or provider call."
+    },
+    {
+      "name": "Source-specific acceptance",
+      "command": "python3 scripts/functional_gate.py",
+      "expected": "Check real configuration/schema/validation branches without remote execution.",
+      "status": "passed",
+      "evidence": "45 deterministic/mocked tests (1 e2e skipped) and 2 fictional storyboard validation checks passed; no film or provider call."
+    },
+    {
+      "name": "Live execution acceptance",
+      "command": "See native production guide",
+      "expected": "Explicitly authorized real provider, invite or video task.",
+      "status": "not-run",
+      "evidence": "No paid model call, real invitation, permission mutation, browser recording or film render was performed."
+    },
+    {
+      "name": "Clean wheel installation",
+      "command": "Build wheel, install into a fresh venv, then run installed entry points outside checkout",
+      "expected": "Stable native interfaces and packaged assets survive installation.",
+      "status": "passed",
+      "evidence": "All three wheels installed in a fresh Python 3.12 environment. Team Access help and TeaserKit no-AI storyboard validation passed; Imagen installed stdio smoke is recorded separately."
+    }
+  ],
+  "sources": [
+    {
+      "repo": "teaserkit",
+      "commit": "0f674c8cdb740e82c543b8857a854fba8559f80c",
+      "paths": [
+        "src/teaserkit",
+        "tests",
+        "examples/demo-app",
+        "docs"
+      ],
+      "license": "MIT",
+      "role": "Retained native owner implementation, import/CLI interfaces and complete source history."
+    }
+  ],
+  "consolidation": [
+    "Public family repository name changes independently from stable native package/CLI/import identity.",
+    "No forced portable coaching wrapper; ordinary execution stays directly installable."
+  ],
+  "docs": [
+    "docs/CONSOLIDATION.md",
+    "docs/GUIDE.md",
+    "docs/configuring-ai.md"
+  ]
+}

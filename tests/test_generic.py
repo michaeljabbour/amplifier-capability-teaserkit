@@ -62,3 +62,15 @@ def test_allow_marker_is_narrow(tmp_path):
     assert r.returncode == 1
     assert "sb.yaml:1" not in r.stdout  # the marked line is exempt
     assert "sb.yaml:2" in r.stdout  # an unmarked line with the same pattern still fails
+
+
+def test_public_noreply_exception_is_limited_to_historical_metadata():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('generic_checker', ROOT / 'scripts/check_generic.py')
+    checker = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(checker)
+    public_id = '123' + '+example-user@' + 'users.noreply.github.com'
+    assert checker.scan(public_id, 'git log') == []
+    assert checker.scan(public_id, 'notes.md')
+    private_email = 'someone@' + 'realcompany.io'
+    assert checker.scan(private_email, 'git log')

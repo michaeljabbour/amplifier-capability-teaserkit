@@ -1,4 +1,12 @@
-# teaserkit
+# TeaserKit
+
+Re-shoot a product video from one storyboard in landscape, vertical and square formats.
+
+Native identity stays `teaserkit`; its manifest and --help remain the executable Smart Tool guide. Install locally with `python3 -m pip install .`. See [consolidation boundaries](docs/CONSOLIDATION.md).
+
+## Retained native guide
+
+### teaserkit
 
 Turn a live web app into short product teaser videos.
 

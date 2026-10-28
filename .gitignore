@@ -14,3 +14,9 @@ build/
 /work/
 .DS_Store
 .check-generic.local
+
+_site/
+
+*.pyc
+
+uv.lock

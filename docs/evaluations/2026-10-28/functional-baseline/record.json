@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-28",
+  "status": "local-functional-baseline",
+  "notes": "45 deterministic/mocked tests and 2 fictional storyboard validation checks passed; no film or provider call.",
+  "raw_native_log_sha256": "614adda761399eb3accb628508546267f1998b40eab1f8546bb88e7a1527d600",
+  "raw_log_location": "Private campaign records; not copied into public source because interpreter paths are irrelevant to the native result.",
+  "model_calls": 0,
+  "real_invites": 0,
+  "new_films": 0,
+  "functional_output": "test_deny_term_is_a_real_validation_failure (__main__.Gate.test_deny_term_is_a_real_validation_failure) ... ok\ntest_fictional_demo_validates_without_ai_or_browser (__main__.Gate.test_fictional_demo_validates_without_ai_or_browser) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.013s\n\nOK\n"
+}

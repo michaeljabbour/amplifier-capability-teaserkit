@@ -58,6 +58,7 @@ EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 ALLOWED_EMAIL = re.compile(
     r"@(example\.(com|org|net)|anthropic\.com)$|^noreply@", re.IGNORECASE
 )
+PUBLIC_NOREPLY = re.compile(r"^[0-9]+\+[A-Za-z0-9-]+@users\.noreply\.github\.com$", re.IGNORECASE)
 SKIP_DIRS = {
     ".git",
     ".venv",
@@ -101,7 +102,10 @@ def scan(text: str, where: str, terms: list[re.Pattern] | None = None) -> list[s
             if m:
                 hits.append(f"{where}:{n}: '{m.group(0)}'")
         for m in EMAIL.finditer(line):
-            if not ALLOWED_EMAIL.search(m.group(0)):
+            # Preserve public upstream attribution without allowing contact
+            # addresses into source files or rewriting historical commits.
+            historical_noreply = where == "git log" and PUBLIC_NOREPLY.fullmatch(m.group(0))
+            if not ALLOWED_EMAIL.search(m.group(0)) and not historical_noreply:
                 hits.append(f"{where}:{n}: email '{m.group(0)}'")
     return hits
 
