@@ -89,12 +89,13 @@ network access beyond the app being filmed.
 Build the included demo:
 
 ```bash
-git clone https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit && cd teaserkit
+git clone https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit
+cd amplifier-smart-tool-teaserkit
 teaserkit validate examples/demo-app/storyboard.yaml
 teaserkit build examples/demo-app/storyboard.yaml --out /tmp/teaserkit-demo
 ```
 
-On an Apple silicon laptop this takes about 2.5 minutes and writes:
+A full build writes outputs like these; elapsed time depends on the machine and app:
 
 ```
 acme-teaser-16x9.mp4   acme-teaser-9x16.mp4   acme-teaser-1x1.mp4     1920x1080 / 1080x1920 / 1080x1080, 35 s
