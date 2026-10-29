@@ -150,5 +150,12 @@
     "proof_summary": "Deterministic and mocked checks plus installed storyboard validation passed. The full capture/render end-to-end check is separate; this update generated no new video.",
     "next_step": "Validate the included fictional storyboard, then review prerequisites before your first full build."
   },
-  "repository_url": "https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit"
+  "repository_url": "https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit",
+  "film": {
+    "file": "teaserkit-teaser",
+    "seconds": 28,
+    "heading": "It made its own teaser.",
+    "blurb": "Asked only to make a teaser of this app with teaserkit, an agent learns the tool from its --help, builds the storyboard and renders every shape. Music only; the words are on screen.",
+    "note": "The app in it, Acme Planner, is a fictional demo. Parts are shown at three times speed."
+  }
 }
