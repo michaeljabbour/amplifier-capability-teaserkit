@@ -2,6 +2,8 @@
 
 Change the interface. Re-shoot the same story.
 
+Watch the [71-second film](https://michaeljabbour.github.io/amplifier-smart-tool-teaserkit/#film): one moved button, and how a written storyboard re-shoots all three versions. The example in it is fictional.
+
 For people producing repeatable product videos of web apps. TeaserKit writes the clicks, framing, captions and timing into a storyboard, then builds landscape, vertical and square outputs from that shared source.
 
 [Explore the site](https://michaeljabbour.github.io/amplifier-smart-tool-teaserkit/)

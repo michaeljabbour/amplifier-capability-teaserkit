@@ -152,10 +152,10 @@
   },
   "repository_url": "https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit",
   "film": {
-    "file": "teaserkit-teaser",
-    "seconds": 28,
-    "heading": "It made its own teaser.",
-    "blurb": "Asked only to make a teaser of this app with teaserkit, an agent learns the tool from its --help, builds the storyboard and renders every shape. Music only; the words are on screen.",
-    "note": "The app in it, Acme Planner, is a fictional demo. Parts are shown at three times speed."
+    "file": "teaserkit-film",
+    "seconds": 71,
+    "heading": "Change the interface. Re-shoot the same story.",
+    "blurb": "In 71 seconds, a design change moves one button and Clix, the cursor in your product video, clicks where it used to be. TeaserKit writes the video down once as a storyboard, so you change one beat and rebuild landscape, vertical and square from the same story. Words on the deny list stop the recording if they appear, and you still watch every frame before you share. Captions are on the player; a transcript is below.",
+    "note": "The app in it, Acme Planner, is a fictional demo. The film shows how the tool behaves; it does not report results."
   }
 }

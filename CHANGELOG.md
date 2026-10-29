@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-29 — Film
+
+- Add a 71-second film to the site, with captions, a transcript, a poster and a 15-second cut. The example in it is fictional, and it reports no results.
+
 ## 2026-10-28 — Film on the site
 
 - Show the 28-second teaser the agent made of this app on the site, with its poster and a download link. The site generator can now show a film.
