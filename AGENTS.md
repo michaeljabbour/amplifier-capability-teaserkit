@@ -69,3 +69,17 @@ scripts/check-generic.sh        deny-list check over files and git history
 - Commit with the repository-local neutral identity (`git config user.name teaserkit`,
   `git config user.email noreply@example.com`), never a personal one.
 - Never commit recordings or renders (`*.mp4`, `*.wav` are ignored) or screenshots of real products.
+
+## Market research upkeep
+
+Local-only market research lives in `.research/market/` (gitignored; never commit it).
+
+At session start, check `.research/market/last_updated`:
+- If the file is missing, seed it from authorized local market research for this repository, retaining source URLs and retrieval dates, or start fresh. Do not invent a review or copy private working content into public files.
+- If it is older than 30 days, or before any positioning, launch or naming work, refresh it with cited primary sources (URL + retrieved date).
+- Keep it local. Never commit it and never copy private research into public docs.
+- Log every change in `.research/market/CHANGELOG.md`.
+
+## Capability identity
+
+Public capability identity: `amplifier-capability-teaserkit`. Preserve the existing portable method folder, native interfaces and legacy installation routes across the approved repository rename.

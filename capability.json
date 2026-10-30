@@ -26,7 +26,7 @@
   "examples": [
     {
       "title": "Fictional app re-shoot",
-      "brief": "Inspect TeaserKit’s help and validate the included fictional demo storyboard. Explain the output shapes and the browser/ffmpeg prerequisites before proposing a build. Do not configure an AI provider, record a real product or generate a film during this first check.",
+      "brief": "Inspect TeaserKit\u2019s help and validate the included fictional demo storyboard. Explain the output shapes and the browser/ffmpeg prerequisites before proposing a build. Do not configure an AI provider, record a real product or generate a film during this first check.",
       "before": "A manually recorded film requires a complete re-edit.",
       "after": "The storyboard changes the one beat and preserves the edit in three shapes.",
       "why": "The retained native capture/composition pipeline is independently useful to callers without Sizzle.",
@@ -138,7 +138,7 @@
       "A model requirement for deterministic recording and rendering.",
       "Calling a video finished before reviewing its frames and output."
     ],
-    "quickstart_prompt": "Inspect TeaserKit’s help and validate the included fictional demo storyboard. Explain the output shapes and the browser/ffmpeg prerequisites before proposing a build. Do not configure an AI provider, record a real product or generate a film during this first check.",
+    "quickstart_prompt": "Inspect TeaserKit\u2019s help and validate the included fictional demo storyboard. Explain the output shapes and the browser/ffmpeg prerequisites before proposing a build. Do not configure an AI provider, record a real product or generate a film during this first check.",
     "output_preview": "One storyboard\n  beats: browser steps, hold, caption, duration\n  framing: region of interest for each aspect\n\nBuild outputs\n  landscape.mp4   vertical.mp4   square.mp4\n  no-audio copies and posters\n  contact sheets and build record\n\nReview gate: inspect frames and watch the outputs before sharing.",
     "example_note": "Illustrative output layout for a fictional web app. No new film was produced for this marketing update.",
     "install_notes": [
@@ -150,12 +150,84 @@
     "proof_summary": "Deterministic and mocked checks plus installed storyboard validation passed. The full capture/render end-to-end check is separate; this update generated no new video.",
     "next_step": "Validate the included fictional storyboard, then review prerequisites before your first full build."
   },
-  "repository_url": "https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit",
+  "repository_url": "https://github.com/michaeljabbour/amplifier-capability-teaserkit",
+  "name": "amplifier-capability-teaserkit",
+  "legacy_names": [
+    "amplifier-smart-tool-teaserkit"
+  ],
+  "contract_version": "amplifier-capability/v1",
+  "version": "0.1.1",
+  "version_basis": "Existing release metadata",
+  "engine": "None",
+  "engine_components": {
+    "storyboard_validate_capture_render": "None",
+    "optional_plan_explore_review": "LLM"
+  },
+  "surfaces": [
+    "cli",
+    "python-library"
+  ],
+  "portable_method": null,
+  "interfaces": {
+    "portable": null,
+    "native": {
+      "distribution": "teaserkit",
+      "entrypoints": {
+        "teaserkit": "teaserkit.cli:main"
+      },
+      "docs": [
+        "docs/CONSOLIDATION.md",
+        "docs/GUIDE.md",
+        "docs/configuring-ai.md"
+      ],
+      "status": "Existing declared entrypoints preserved; runtime signatures, service access and installation tests remain separate evidence."
+    },
+    "host_adapters": {
+      "amplifier_bundle": null,
+      "grants_autonomy": false
+    }
+  },
+  "permissions": {
+    "installation": {
+      "network": false,
+      "executes_capability_code": false,
+      "writes": [
+        "Selected discovery folders",
+        ".capability-state transaction backups"
+      ],
+      "grants_runtime_permissions": false
+    },
+    "runtime": {
+      "status": "Host/caller authorizes each operation; installation is not a tool allowlist or standing approval.",
+      "declared_boundaries": [
+        "Deterministic validation and rendering do not require a model key; optional plan/explore/review capabilities can incur provider cost.",
+        "Browser/ffmpeg prerequisites are explicit and are not installed as an unrequested side effect.",
+        "No new film, live browser recording or paid provider call was performed in this local packaging baseline."
+      ]
+    },
+    "secret_names": {
+      "discovery_requires": [],
+      "native_runtime_inventory": "See native documentation; no credentials are bundled or inferred."
+    }
+  },
+  "dataflow": {
+    "installation": "Read pinned tracked portable source and copy locally with SHA-256 receipts. No source text is transmitted.",
+    "method": "Caller supplies authorized context; existing promise and boundaries govern output.",
+    "native_runtime": "Provider/network/storage flows are owned by native interfaces and host authorization; these files do not enable them."
+  },
+  "source_policy": {
+    "revision": "Explicit full40-character Git commit required at installation; never infer latest.",
+    "repository_rename": "Public identity may change; skill folder, imports, entrypoints, tool IDs and schemas remain stable.",
+    "research": ".research/market remains local and ignored; AGENTS governs refresh."
+  },
   "film": {
     "file": "teaserkit-film",
     "seconds": 71,
     "heading": "Change the interface. Re-shoot the same story.",
     "blurb": "In 71 seconds, a design change moves one button and Clix, the cursor in your product video, clicks where it used to be. TeaserKit writes the video down once as a storyboard, so you change one beat and rebuild landscape, vertical and square from the same story. Words on the deny list stop the recording if they appear, and you still watch every frame before you share. Captions are on the player; a transcript is below.",
     "note": "The app in it, Acme Planner, is a fictional demo. The film shows how the tool behaves; it does not report results."
-  }
+  },
+  "repository_aliases": [
+    "https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit"
+  ]
 }

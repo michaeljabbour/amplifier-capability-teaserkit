@@ -6,7 +6,8 @@ the demo app — then cuts in the result. It's how
 
 ```bash
 examples/self-teaser/setup.sh
-.venv/bin/teaserkit build examples/self-teaser/storyboard.yaml --out /tmp/teaserkit-teaser
+# Run the staged build command printed by setup.sh.
+# After filming, run its printed --cleanup command.
 ```
 
 `setup.sh` starts a private [Forge](https://github.com/microsoft/amplifier-skill-forge) terminal
@@ -19,9 +20,29 @@ Needs, beyond teaserkit's own prerequisites: this repo's dev venv (`uv venv && u
 '.[dev]'`), the `amplifier-skill-forge` skill installed, the `amplifier` CLI on PATH, and a
 configured model provider. The whole shoot, including the agent's build, takes 4-6 minutes.
 
-`setup.sh` writes everything it needs under `.shoot/` (gitignored) and always starts clean, so
-re-running it is how you re-shoot. It never touches this machine's real Forge dashboard: it
-closes only sessions on its own private daemon.
+`setup.sh` creates a private scratch directory under `/tmp` and prints its path and the exact
+staged build command. It refuses an occupied port 3199, including a previous shoot; it never
+reuses a healthy HTTP service or assumes that a private HOME proves port ownership. Keep the
+printed scratch directory until cleanup is complete.
+
+The controller launches Forge in the foreground as its recorded child, with a scratch HOME
+and no launchd registration. Before every client call it verifies the child's PID, private
+Forge PID file, listening PID and process start identity. It records only the session ID
+returned by this shoot's successful creation. An invalid or timed-out creation remains
+uncertain; the controller retains the daemon for inspection instead of guessing which session
+to close. A startup retry is allowed only after its exact child has exited and the port is free.
+
+After filming, run the printed command, or:
+
+```bash
+examples/self-teaser/setup.sh --cleanup /tmp/teaserkit-self-teaser-EXAMPLE
+```
+
+Cleanup closes only the recorded session IDs. It refuses to stop the daemon if other sessions
+are observed, or if current process/port ownership no longer matches the receipt. It never
+invokes a global Forge stop or closes every ID from a dashboard listing. The scratch files
+are retained for review. This is a cooperative local shoot, not authentication or isolation
+from another process that deliberately joins the new local dashboard.
 
 ## Reading the storyboard
 
@@ -36,8 +57,13 @@ closes only sessions on its own private daemon.
 
 ## Troubleshooting
 
-- `too many open files` in `.shoot/forge.log`: the private daemon's config-file watcher hit this
+- `too many open files` in the printed scratch directory's `forge.log`: the private daemon's config-file watcher hit this
   machine's file-descriptor limit. Raise it first: `ulimit -n 65536` in the shell that runs
   `setup.sh`.
-- A stale session on port 3199 from a previous shoot: `setup.sh` closes every session on that
-  daemon before starting a new one, so just re-run it.
+- A previous shoot still occupies port 3199: use that shoot's retained `shoot-owner.json` and
+  printed `--cleanup` command. If ownership cannot be proven or another session is present,
+  cleanup stops with a specific error. Inspect the named process/session yourself; do not
+  substitute a list-and-close-all command.
+- `lsof` and `ps` are required for process ownership checks. A missing tool, failed startup or
+  mismatch is a setup failure, not a ready dashboard. No configured provider or live Forge
+  acceptance is inferred from the offline regression tests.

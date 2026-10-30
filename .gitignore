@@ -20,4 +20,6 @@ _site/
 *.pyc
 
 uv.lock
+.research/
+
 !site/film/*.mp4
