@@ -237,3 +237,7 @@ Contributions must keep the repository free of personal and company-specific dat
 ## License
 
 [MIT](LICENSE)
+
+## Repository migration
+
+This repository was renamed from `amplifier-smart-tool-teaserkit` to `amplifier-capability-teaserkit`. Existing installed method names, bundle aliases and native interfaces stay the same. See the [migration guide](https://michaeljabbour.github.io/migration/) and [repository map](https://michaeljabbour.github.io/migration/mapping.json) for source URL updates.
