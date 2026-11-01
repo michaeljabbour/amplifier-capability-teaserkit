@@ -27,7 +27,7 @@ from pathlib import Path
 J = "".join
 LOCAL_TERMS = ".check-generic.local"  # gitignored: one term per line, # for comments
 REPO_URL = re.compile(
-    r"github\.com/[A-Za-z0-9-]+/teaserkit\b", re.IGNORECASE
+    r"github\.com/[A-Za-z0-9-]+/(?:amplifier-capability-teaserkit|amplifier-smart-tool-teaserkit|teaserkit)(?![A-Za-z0-9_-])", re.IGNORECASE
 )  # the project's own home
 ALLOW_LINE = re.compile(
     r"#\s*check-generic:allow\s*$"

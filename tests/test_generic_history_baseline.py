@@ -154,3 +154,12 @@ def test_shallow_checkout_fails_closed_with_history_remedy(tmp_path):
     assert subprocess.check_output(["git", "-C", str(shallow), "rev-parse", "--is-shallow-repository"], text=True).strip() == "true"
     result = subprocess.run([sys.executable, str(ROOT / "scripts/check_generic.py"), str(shallow)], capture_output=True, text=True)
     assert result.returncode == 1 and "full-history" in result.stdout
+
+
+def test_only_exact_known_project_url_aliases_avoid_local_owner_terms():
+    terms = [re.compile("zorblat")]
+    for name in ["teaserkit", "amplifier-smart-tool-teaserkit", "amplifier-capability-teaserkit"]:
+        for suffix in ["", ".git", "/releases/tag/v0.1.1"]:
+            assert checker.scan("https://github.com/zorblat/" + name + suffix, "README.md", terms) == []
+    for name in ["another-project", "teaserkit-unrelated", "amplifier-capability-teaserkit-unrelated"]:
+        assert checker.scan("https://github.com/zorblat/" + name, "README.md", terms)
