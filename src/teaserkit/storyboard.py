@@ -8,7 +8,7 @@ project:
   auth: {kind: none}                      # none | storage_state | script
   brand: brand.yaml                       # or an inline mapping (fonts, colors, logo)
   deny_list: ["Internal", "staging"]      # strings that must never be on screen
-  viewport: [1440, 810]
+  viewport: [1440, 810]                  # exactly two positive integer CSS-pixel dimensions
   dpr: 2
 outputs:
   aspects: [16x9, 9x16, 1x1]
@@ -243,6 +243,16 @@ def _num(v: Any, where: str) -> float:
     return float(v)
 
 
+def _parse_viewport(value: Any) -> tuple[int, int]:
+    """Keep viewport validation identical for parsed and constructed storyboards."""
+    if not isinstance(value, (list, tuple)) or len(value) != 2:
+        raise _err("project.viewport", "expected [width, height] with exactly two positive integers")
+    for index, dimension in enumerate(value):
+        if isinstance(dimension, bool) or not isinstance(dimension, int) or dimension <= 0:
+            raise _err(f"project.viewport[{index}]", "expected a positive integer CSS-pixel dimension")
+    return value[0], value[1]
+
+
 def _parse_locator(v: Any, where: str) -> dict:
     if isinstance(v, str):
         return {"text": v}
@@ -424,7 +434,7 @@ def _parse_project(p: Any, root: Path) -> Project:
     base = p.get("base_url")
     if not base and not serve_dir:
         raise _err("project", "needs `base_url`, or `serve` to film a local static site")
-    vp = p.get("viewport", [1440, 810])
+    vp = _parse_viewport(p.get("viewport", [1440, 810]))
     deny = p.get("deny_list") or []
     if not isinstance(deny, list) or not all(isinstance(x, str) for x in deny):
         raise _err("project.deny_list", "deny_list is a list of strings")
@@ -435,7 +445,7 @@ def _parse_project(p: Any, root: Path) -> Project:
         brand=_parse_brand(p.get("brand"), root),
         deny_list=list(deny),
         deny_defaults=bool(p.get("deny_defaults", True)),
-        viewport=(int(vp[0]), int(vp[1])),
+        viewport=vp,
         dpr=int(p.get("dpr", 2)),
         locale=str(p.get("locale", "en-US")),
         timezone=str(p.get("timezone", "UTC")),

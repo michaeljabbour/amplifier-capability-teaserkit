@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased — viewport boundary repair
+
+- Pin exact pre-existing public metadata findings without exempting new metadata, files or commit messages.
+- Reject malformed, nonpositive and non-integer viewport dimensions before recording
+  or composition. Numeric strings and floats are no longer silently coerced.
+- Return a failed validation report for invalid viewport values on manually
+  constructed or mutated storyboards. Valid dimensions and the default stay unchanged.
+- Add offline parser, public validation and CLI boundary regression checks. This local
+  repair does not change the original campaign's retained held-out failure.
+
 ## 2026-10-29 — Film
 
 - Add a 71-second film to the site, with captions, a transcript, a poster and a 15-second cut. The example in it is fictional, and it reports no results.

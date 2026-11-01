@@ -9,7 +9,8 @@ from __future__ import annotations
 import re
 from dataclasses import asdict, dataclass, field
 
-from .storyboard import Beat, Storyboard, Video
+from .errors import StoryboardError
+from .storyboard import Beat, Storyboard, Video, _parse_viewport
 from .style import DEFAULT_DENY
 
 CAPTION_FADE_IN_AT = 0.3   # captions appear this far into a beat...
@@ -139,7 +140,7 @@ def _beat_rules(b: Beat, sb: Storyboard, add) -> None:
 
 
 def validate(sb: Storyboard, *, strict: bool = False) -> Report:
-    """Check every style rule. With `strict`, warnings count as errors (used by `plan`)."""
+    """Check viewport and style rules; `strict` promotes warnings (used by `plan`)."""
     rep = Report()
     st = sb.style
 
@@ -147,6 +148,12 @@ def validate(sb: Storyboard, *, strict: bool = False) -> Report:
         if strict and sev == "warning":
             sev = "error"
         (rep.errors if sev == "error" else rep.warnings).append(Issue(rule, where, msg, sev))
+
+    try:
+        _parse_viewport(sb.project.viewport)
+    except StoryboardError as error:
+        add("error", "viewport", "project.viewport", error.message)
+        return rep
 
     if st.get("music") not in ("synth", "none"):
         add("error", "music", "style.music", f"'{st.get('music')}' is not allowed; only original synthesized music ('synth') or 'none'.")
