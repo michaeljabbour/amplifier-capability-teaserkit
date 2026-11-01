@@ -2,11 +2,11 @@
 
 Change the interface. Re-shoot the same story.
 
-Watch the [71-second film](https://michaeljabbour.github.io/amplifier-smart-tool-teaserkit/#film): one moved button, and how a written storyboard re-shoots all three versions. The example in it is fictional.
+Watch the [71-second film](https://michaeljabbour.github.io/amplifier-capability-teaserkit/#film): one moved button, and how a written storyboard re-shoots all three versions. The example in it is fictional.
 
 For people producing repeatable product videos of web apps. TeaserKit writes the clicks, framing, captions and timing into a storyboard, then builds landscape, vertical and square outputs from that shared source.
 
-[Explore the site](https://michaeljabbour.github.io/amplifier-smart-tool-teaserkit/)
+[Explore the site](https://michaeljabbour.github.io/amplifier-capability-teaserkit/)
 
 ## What you get
 
@@ -17,8 +17,8 @@ For people producing repeatable product videos of web apps. TeaserKit writes the
 ## Start here
 
 ```sh
-git clone https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit.git
-cd amplifier-smart-tool-teaserkit
+git clone https://github.com/michaeljabbour/amplifier-capability-teaserkit.git
+cd amplifier-capability-teaserkit
 python3 -m venv .venv
 .venv/bin/python -m pip install .
 .venv/bin/teaserkit --help
@@ -77,7 +77,7 @@ teaserkit needs Python 3.11+, [ffmpeg](docs/installing-ffmpeg.md) and Playwright
 [Chromium](docs/installing-playwright.md).
 
 ```bash
-uv tool install "teaserkit[ai] @ git+https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit"
+uv tool install "teaserkit[ai] @ git+https://github.com/michaeljabbour/amplifier-capability-teaserkit"
 uv tool run --from teaserkit playwright install chromium
 brew install ffmpeg            # or: sudo apt install ffmpeg
 teaserkit doctor
@@ -91,8 +91,8 @@ network access beyond the app being filmed.
 Build the included demo:
 
 ```bash
-git clone https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit
-cd amplifier-smart-tool-teaserkit
+git clone https://github.com/michaeljabbour/amplifier-capability-teaserkit
+cd amplifier-capability-teaserkit
 teaserkit validate examples/demo-app/storyboard.yaml
 teaserkit build examples/demo-app/storyboard.yaml --out /tmp/teaserkit-demo
 ```
@@ -177,7 +177,7 @@ and a message naming the fix. They never fall back to guessing.
 
 Asked for nothing but "make a teaser of this app with teaserkit," an [Amplifier](https://github.com/microsoft/amplifier)
 agent finds the CLI through its own `--help`, builds the video, and gets a working result.
-[Watch the full clip](https://github.com/michaeljabbour/amplifier-smart-tool-teaserkit/releases/tag/v0.1.1) (28s,
+[Watch the full clip](https://github.com/michaeljabbour/amplifier-capability-teaserkit/releases/tag/v0.1.1) (28s,
 with sound), or reproduce it yourself: [`examples/self-teaser`](examples/self-teaser).
 
 ## Use it from an agent

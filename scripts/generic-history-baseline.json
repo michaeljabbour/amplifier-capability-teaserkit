@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "public_revision": "f757dbc569de1d9253e2a5dc5f59023602bfd2e4",
+  "scope": "Exact pre-existing public author/committer email findings only; source files, commit messages, local denied terms and all new metadata remain checked. Public history is preserved, not rewritten.",
+  "fields": [
+    {
+      "commit": "5032fc90330feabb987aac32fa3786f8bc4e5d53",
+      "field": "author",
+      "sha256": "33a4edb0d0ce0eb4be0f99d9d0564a6a69ae93d22ed2815db172797d9f3d23e4"
+    },
+    {
+      "commit": "5032fc90330feabb987aac32fa3786f8bc4e5d53",
+      "field": "committer",
+      "sha256": "33a4edb0d0ce0eb4be0f99d9d0564a6a69ae93d22ed2815db172797d9f3d23e4"
+    },
+    {
+      "commit": "6f249a6e4b92018e996d5b62f17b3acdc94d2d6c",
+      "field": "author",
+      "sha256": "33a4edb0d0ce0eb4be0f99d9d0564a6a69ae93d22ed2815db172797d9f3d23e4"
+    },
+    {
+      "commit": "6f249a6e4b92018e996d5b62f17b3acdc94d2d6c",
+      "field": "committer",
+      "sha256": "33a4edb0d0ce0eb4be0f99d9d0564a6a69ae93d22ed2815db172797d9f3d23e4"
+    },
+    {
+      "commit": "a8127cd08bbd75fe026e3c5df2ac221018a84833",
+      "field": "author",
+      "sha256": "33a4edb0d0ce0eb4be0f99d9d0564a6a69ae93d22ed2815db172797d9f3d23e4"
+    },
+    {
+      "commit": "a8127cd08bbd75fe026e3c5df2ac221018a84833",
+      "field": "committer",
+      "sha256": "33a4edb0d0ce0eb4be0f99d9d0564a6a69ae93d22ed2815db172797d9f3d23e4"
+    },
+    {
+      "commit": "b2b455a35d4d83aa4f0ba12965d61307ec851f52",
+      "field": "author",
+      "sha256": "33a4edb0d0ce0eb4be0f99d9d0564a6a69ae93d22ed2815db172797d9f3d23e4"
+    },
+    {
+      "commit": "b2b455a35d4d83aa4f0ba12965d61307ec851f52",
+      "field": "committer",
+      "sha256": "33a4edb0d0ce0eb4be0f99d9d0564a6a69ae93d22ed2815db172797d9f3d23e4"
+    }
+  ]
+}

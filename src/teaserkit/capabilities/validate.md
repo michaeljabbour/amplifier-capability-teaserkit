@@ -2,8 +2,12 @@ Checks a storyboard against the house style before anything is filmed. Determini
 browser, no network, no model. Because every beat has a planned duration (`duration`, or the
 style's `beat_default_seconds`), each video's final length is known here.
 
-Rules (errors unless noted; defaults shown, all overridable under `style:`):
+Checks are errors unless noted. Style defaults may be overridden under `style:`;
+the viewport requirement is structural.
 
+- `viewport` -- exactly two positive integer CSS-pixel dimensions. This structural
+  requirement is fixed rather than a style override. It is also checked for manually
+  constructed or mutated library storyboards before ROI rules run.
 - `caption-words` -- at most 7 words per caption line.
 - `caption-lines` -- at most 2 lines, counting `sub`.
 - `caption-time` -- each caption readable at least 2.5 s (beat duration minus fades).
@@ -17,7 +21,12 @@ Rules (errors unless noted; defaults shown, all overridable under `style:`):
   `deny_list` plus built-ins such as "undefined", "NaN", "lorem ipsum").
 - `music` -- only `synth` (original synthesized) or `none`.
 
-Schema problems (unknown step, missing id, bad ROI shape) fail earlier as `storyboard_invalid`.
+Schema problems (unknown step, missing id, bad ROI shape or viewport) fail during parsing
+as `storyboard_invalid`. `project.viewport` accepts a list or tuple of two positive
+integers, defaulting to `[1440, 810]`. Booleans, numeric strings, floats (including
+non-finite values), nonpositive dimensions and other shapes are rejected instead of
+being truncated or coerced. If a library caller changes the viewport after parsing,
+`validate` preserves its `Report` return contract and returns a hard `viewport` error.
 
 ## Arguments
 
