@@ -127,3 +127,30 @@ def test_private_email_attribution_trailer_is_not_exempt():
     value = "Co-authored-by: " + metadata()
     hits, accepted = checker.scan_history_field(value, "a" * 40, "message", [], {})
     assert hits and accepted == 0
+
+
+def test_shallow_checkout_fails_closed_with_history_remedy(tmp_path):
+    origin = tmp_path / "origin"
+    origin.mkdir()
+    subprocess.run(["git", "init", "-q", str(origin)], check=True)
+    def commit():
+        subprocess.run(["git", "-C", str(origin), "add", "."], check=True)
+        subprocess.run(["git", "-C", str(origin), "-c", "user.name=Fixture", "-c",
+                        "user.email=noreply@example.com", "commit", "--no-gpg-sign", "-qm", "Fixture"], check=True)
+        return subprocess.check_output(["git", "-C", str(origin), "rev-parse", "HEAD"], text=True).strip()
+    (origin / "README.md").write_text("First fixture.\n")
+    old = commit()
+    (origin / "README.md").write_text("Second fixture.\n")
+    public = commit()
+    folder = origin / "scripts"
+    folder.mkdir()
+    (folder / "generic-history-baseline.json").write_text(json.dumps({
+        "version": 1, "public_revision": public, "scope": "Fictional history boundary",
+        "fields": [{"commit": old, "field": "author", "sha256": hashlib.sha256(b"Fixture <noreply@example.com>").hexdigest()}],
+    }))
+    commit()
+    shallow = tmp_path / "shallow"
+    subprocess.run(["git", "clone", "--quiet", "--no-local", "--depth=1", str(origin), str(shallow)], check=True)
+    assert subprocess.check_output(["git", "-C", str(shallow), "rev-parse", "--is-shallow-repository"], text=True).strip() == "true"
+    result = subprocess.run([sys.executable, str(ROOT / "scripts/check_generic.py"), str(shallow)], capture_output=True, text=True)
+    assert result.returncode == 1 and "full-history" in result.stdout

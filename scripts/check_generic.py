@@ -140,7 +140,7 @@ def load_history_baseline(root: Path) -> dict[tuple[str, str], str]:
             cwd=root, capture_output=True, check=False,
         )
         if reachable.returncode != 0:
-            raise ValueError("Baseline field is outside the pinned public revision")
+            raise ValueError("Baseline field is outside the pinned public revision or history is missing; verify the pin and use a full-history checkout")
         baseline[key] = row["sha256"]
     return baseline
 

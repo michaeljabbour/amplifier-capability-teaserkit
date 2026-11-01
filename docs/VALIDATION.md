@@ -7,3 +7,5 @@ The public main ancestry already includes author/committer metadata that the gen
 ## Viewport contract
 
 Viewport inputs must be two positive integer dimensions. Lists, tuples and the omitted default are accepted. Numeric strings, booleans and floats are deliberately rejected rather than silently coerced. Parser failures retain a location-specific typed error; invalid mutated objects return a failed validation report. Boundary tests do not establish recording, rendering, provider or outside-user outcomes.
+
+The generic privacy check requires the pinned public ancestors. The Pages checkout requests full history, while the checker fails closed with a history remedy on shallow/missing-object checkouts. It never fetches, rewrites or changes the caller's repository automatically.
