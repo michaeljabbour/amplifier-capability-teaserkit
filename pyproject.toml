@@ -27,8 +27,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/michaeljabbour/teaserkit"
-Issues = "https://github.com/michaeljabbour/teaserkit/issues"
+Homepage = "https://github.com/michaeljabbour/amplifier-capability-teaserkit"
+Issues = "https://github.com/michaeljabbour/amplifier-capability-teaserkit/issues"
 
 [project.optional-dependencies]
 ai = ["anthropic>=0.60"]
